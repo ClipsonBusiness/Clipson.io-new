@@ -178,7 +178,7 @@ const Hero = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-12">
               <a 
-                href="https://app.pink58.com/clipper-login.html" 
+                href="https://app.clipson.io/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="px-8 py-4 rounded-full bg-green-400 text-gray-900 font-semibold text-lg hover:bg-green-300 transition-all shadow-lg shadow-green-400/30 hover:shadow-green-400/50 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-400/50 inline-block text-center relative overflow-hidden"
