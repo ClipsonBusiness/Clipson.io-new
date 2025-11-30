@@ -8,7 +8,7 @@ const HowItWorks = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-4">
-            How ClipSon Works
+            How Clipping Works
           </h2>
           <p className="text-center text-white font-bold mb-12 max-w-2xl mx-auto">
             Watch how easy it is to start earning from your clips.
@@ -18,8 +18,8 @@ const HowItWorks = () => {
           <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
             <iframe
               className="w-full h-full"
-              src="https://www.youtube.com/embed/pvV4g53XE9I"
-              title="How ClipSon Works"
+              src="https://www.youtube.com/embed/pvV4g53XE9I?si=iGHAIRJyRZFWrcEn"
+              title="How Clipping Works"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
@@ -31,4 +31,3 @@ const HowItWorks = () => {
 }
 
 export default HowItWorks
-
