@@ -21,7 +21,7 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="flex items-center flex-shrink-0">
             <a 
-              href="https://app.pink58.com/clipper-login.html" 
+              href="https://app.clipson.io/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-green-400 text-gray-900 font-semibold text-sm sm:text-base hover:bg-green-300 transition-all shadow-lg shadow-green-400/30 hover:shadow-green-400/50 focus:outline-none focus:ring-2 focus:ring-green-400/50 inline-block text-center relative overflow-hidden whitespace-nowrap"
