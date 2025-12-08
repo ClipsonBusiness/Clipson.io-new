@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from '../assets/images/ClipSon.jpg'
 
 const HowItWorks = () => {
   return (
@@ -15,17 +16,20 @@ const HowItWorks = () => {
           </p>
 
           {/* Three Step Panels */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-12 items-start">
             {/* Step 1: Link Account */}
-            <div className="bg-purple-200/20 backdrop-blur-sm rounded-2xl p-4 border border-purple-300/30">
-              <div className="bg-purple-100/10 rounded-xl p-4 mb-4 min-h-[140px] flex items-center justify-center">
+            <div className="bg-purple-200/20 backdrop-blur-sm rounded-2xl p-4 border border-purple-300/30 flex flex-col">
+              <h3 className="text-lg font-bold text-gray-200 text-center mb-4">Link account</h3>
+              <div className="bg-purple-100/10 rounded-xl p-4 mb-4 min-h-[140px] flex items-center justify-center flex-1">
                 <div className="w-full">
-                  {/* Video icon on left */}
+                  {/* ClipSon logo on left */}
                   <div className="flex items-center mb-3">
-                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center mr-3">
-                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center mr-3 overflow-hidden">
+                      <img 
+                        src={logo} 
+                        alt="ClipSon Logo" 
+                        className="w-full h-full object-cover rounded-lg"
+                      />
                     </div>
                     <div className="flex-1">
                       <div className="h-1 bg-gray-400/30 rounded-full mb-1.5"></div>
@@ -62,13 +66,13 @@ const HowItWorks = () => {
                   </div>
                 </div>
               </div>
-              <h3 className="text-lg font-bold text-gray-200 mb-1">Link account</h3>
-              <p className="text-gray-400 text-xs">Connect your social profiles to ClipSon to verify ownership.</p>
+              <p className="text-gray-400 text-xs text-center">Connect your social profiles to ClipSon to verify ownership.</p>
             </div>
 
             {/* Step 2: Submit Content */}
-            <div className="bg-purple-200/20 backdrop-blur-sm rounded-2xl p-4 border border-purple-300/30">
-              <div className="bg-purple-100/10 rounded-xl p-3 mb-4 min-h-[140px]">
+            <div className="bg-purple-200/20 backdrop-blur-sm rounded-2xl p-4 border border-purple-300/30 flex flex-col">
+              <h3 className="text-lg font-bold text-gray-200 text-center mb-4">Submit content</h3>
+              <div className="bg-purple-100/10 rounded-xl p-3 mb-4 min-h-[140px] flex-1">
                 {/* Content preview */}
                 <div className="bg-gray-800 rounded-lg overflow-hidden mb-2 relative">
                   <div className="h-20 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
@@ -98,13 +102,13 @@ const HowItWorks = () => {
                   </button>
                 </div>
               </div>
-              <h3 className="text-lg font-bold text-gray-200 mb-1">Submit content</h3>
-              <p className="text-gray-400 text-xs">Create and post content, then submit your link to start tracking views.</p>
+              <p className="text-gray-400 text-xs text-center">Create and post content, then submit your link to start tracking views.</p>
             </div>
 
             {/* Step 3: Get Paid */}
-            <div className="bg-purple-200/20 backdrop-blur-sm rounded-2xl p-4 border border-purple-300/30">
-              <div className="bg-purple-100/10 rounded-xl p-3 mb-4 min-h-[140px]">
+            <div className="bg-purple-200/20 backdrop-blur-sm rounded-2xl p-4 border border-purple-300/30 flex flex-col">
+              <h3 className="text-lg font-bold text-gray-200 text-center mb-4">Get paid</h3>
+              <div className="bg-purple-100/10 rounded-xl p-3 mb-4 min-h-[140px] flex-1">
                 <div className="bg-gray-800 rounded-xl p-3">
                   <h4 className="text-gray-300 text-xs font-medium mb-2">My balance</h4>
                   <div className="text-2xl font-bold text-white mb-2">$8,512.71</div>
@@ -141,8 +145,7 @@ const HowItWorks = () => {
                   </div>
                 </div>
               </div>
-              <h3 className="text-lg font-bold text-gray-200 mb-1">Get paid</h3>
-              <p className="text-gray-400 text-xs">Earn automatically for every verified view your content generates.</p>
+              <p className="text-gray-400 text-xs text-center">Earn automatically for every verified view your content generates.</p>
             </div>
           </div>
 
