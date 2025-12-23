@@ -192,7 +192,7 @@ const Hero = () => {
                 href="/launch-campaign" 
                 className="px-8 py-4 rounded-full bg-transparent border-2 border-white/30 text-white font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white/50 inline-block text-center relative overflow-hidden"
               >
-                <span className="relative z-10">Launch a campaign</span>
+         <span className="relative z-10">Launch Campaign</span>
               </a>
             </div>
           </div>
