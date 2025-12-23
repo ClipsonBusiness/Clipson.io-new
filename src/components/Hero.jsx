@@ -175,7 +175,7 @@ const Hero = () => {
               ClipSon is the platform that pays clippers for making viral short-form content. Join thousands of clippers earning from every view.
             </p>
 
-            {/* CTAs */}
+                        {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-12">
               <a 
                 href="https://app.clipson.io/" 
@@ -187,12 +187,6 @@ const Hero = () => {
                 }}
               >
                 <span className="relative z-10">Start Clipping</span>
-              </a>
-              <a 
-                href="/launch-campaign" 
-                className="px-8 py-4 rounded-full bg-transparent border-2 border-white/30 text-white font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white/50 inline-block text-center relative overflow-hidden"
-              >
-         <span className="relative z-10">Launch Campaign</span>
               </a>
             </div>
           </div>
