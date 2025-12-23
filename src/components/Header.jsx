@@ -18,7 +18,7 @@ const Header = () => {
             />
           </div>
 
-          {/* CTA Buttons */}
+                  {/* CTA Buttons */}
           <div className="flex items-center flex-shrink-0 gap-3">
             <a 
               href="https://app.clipson.io/" 
@@ -30,12 +30,6 @@ const Header = () => {
               }}
             >
               <span className="relative z-10">Start Clipping</span>
-            </a>
-            <a 
-              href="/launch-campaign" 
-              className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-transparent border-2 border-white/30 text-white font-semibold text-sm sm:text-base hover:bg-white/10 hover:border-white/50 transition-all focus:outline-none focus:ring-2 focus:ring-white/50 inline-block text-center relative overflow-hidden whitespace-nowrap"
-            >
-              <span className="relative z-10">Launch a campaign</span>
             </a>
           </div>
         </div>
