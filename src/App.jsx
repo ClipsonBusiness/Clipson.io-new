@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Index from './Index'
 import CampaignLaunch from './pages/CampaignLaunch'
 import SelfManagedOffer from './pages/SelfManagedOffer'
-import CloseSale from './pages/CloseSale'
-import Success from './pages/Success'
+import CloseSale from './pages/CloseSale.jsx'
+import Success from './pages/Success.jsx'
 
 function App() {
   return (
@@ -21,4 +21,3 @@ function App() {
 }
 
 export default App
-
