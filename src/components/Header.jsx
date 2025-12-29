@@ -18,7 +18,7 @@ const Header = () => {
             />
           </div>
 
-                  {/* CTA Buttons */}
+          {/* CTA Buttons */}
           <div className="flex items-center flex-shrink-0 gap-3">
             <a 
               href="https://app.clipson.io/" 
