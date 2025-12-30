@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { loadStripe } from '@stripe/stripe-js'
 import logo from '../assets/images/ClipSon.jpg'
-
-// Initialize Stripe - Replace with your publishable key
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_your_publishable_key_here')
 
 const CloseSale = () => {
   const [searchParams] = useSearchParams()
@@ -63,7 +59,20 @@ const CloseSale = () => {
 
     try {
       // Call your backend API to create a Stripe Checkout session
-      const response = await fetch('/api/create-checkout-session', {
+      // Use relative path - Vite proxy handles it in development
+      const apiUrl = '/api/create-checkout-session'
+      
+      console.log('🔍 Calling API:', apiUrl)
+      console.log('📦 Request payload:', {
+        name: formData.name,
+        email: formData.email,
+        amount: total * 100,
+        baseAmount: campaignPrice * 100,
+        spending: spendingAmount,
+        discordAnnouncement: discordIncluded || formData.discordAnnouncement,
+      })
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,27 +87,54 @@ const CloseSale = () => {
         }),
       })
 
-      const session = await response.json()
-
-      if (session.error) {
-        alert(session.error)
+      console.log('📡 Response status:', response.status, response.statusText)
+      
+      // Check if response is ok
+      if (!response.ok) {
+        const errorText = await response.text()
+        console.error('❌ API Error Response:', errorText)
+        try {
+          const errorJson = JSON.parse(errorText)
+          alert(`Error: ${errorJson.error || errorText}`)
+        } catch {
+          alert(`Error: ${errorText || 'Server error. Please check your Stripe keys are set in Vercel.'}`)
+        }
         setLoading(false)
         return
       }
 
-      // Redirect to Stripe Checkout
-      const stripe = await stripePromise
-      const { error } = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      })
+      const session = await response.json()
+      console.log('Session response:', session)
 
-      if (error) {
-        alert(error.message)
+      if (session.error) {
+        alert(`Error: ${session.error}`)
         setLoading(false)
+        return
       }
+
+      // Use the checkout URL directly (newer Stripe.js doesn't support redirectToCheckout)
+      if (session.url) {
+        console.log('✅ Redirecting to Stripe Checkout:', session.url)
+        // Redirect directly to Stripe Checkout URL
+        window.location.href = session.url
+        return
+      }
+
+      if (!session.id) {
+        alert('No checkout session received. Check server logs.')
+        setLoading(false)
+        return
+      }
+
+      // Fallback: Construct checkout URL from session ID
+      // This is a workaround until the API is updated to return the URL
+      console.log('⚠️ Session URL not provided, constructing from session ID')
+      const checkoutUrl = `https://checkout.stripe.com/c/pay/${session.id}`
+      console.log('✅ Redirecting to constructed Stripe Checkout URL:', checkoutUrl)
+      window.location.href = checkoutUrl
     } catch (error) {
       console.error('Error:', error)
-      alert('An error occurred. Please try again.')
+      alert(`Error: ${error.message || error.toString() || 'An error occurred. Please try again.'}`)
       setLoading(false)
     }
   }
