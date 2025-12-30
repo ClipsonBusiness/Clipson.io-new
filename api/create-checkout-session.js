@@ -6,16 +6,23 @@ export default async function handler(req, res) {
   }
 
   // Check if Stripe key is set BEFORE initializing Stripe
-  if (!process.env.STRIPE_SECRET_KEY) {
+  const stripeKey = process.env.STRIPE_SECRET_KEY;
+  if (!stripeKey || stripeKey.trim() === '') {
     console.error('STRIPE_SECRET_KEY is not set in environment variables');
+    const allEnvKeys = Object.keys(process.env).filter(k => k.includes('STRIPE'));
     return res.status(500).json({ 
       error: 'Server configuration error: Stripe secret key is missing. Please add STRIPE_SECRET_KEY to Vercel environment variables.',
-      debug: 'Environment variables available: ' + Object.keys(process.env).filter(k => k.includes('STRIPE')).join(', ')
+      debug: {
+        availableStripeVars: allEnvKeys,
+        keyExists: !!process.env.STRIPE_SECRET_KEY,
+        keyLength: process.env.STRIPE_SECRET_KEY ? process.env.STRIPE_SECRET_KEY.length : 0,
+        instructions: 'Go to Vercel → Settings → Environment Variables → Add STRIPE_SECRET_KEY for Production, Preview, and Development'
+      }
     });
   }
 
-  // Initialize Stripe with the secret key
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  // Initialize Stripe with the secret key (trim any whitespace)
+  const stripe = new Stripe(stripeKey.trim());
 
   try {
     const { name, email, amount, baseAmount, spending, discordAnnouncement } = req.body;
