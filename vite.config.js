@@ -6,6 +6,13 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
+    proxy: {
+      '/api': {
+        target: 'https://clipson-io-new.vercel.app',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
   },
 })
 
