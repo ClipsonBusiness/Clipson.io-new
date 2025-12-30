@@ -1,6 +1,16 @@
 import Stripe from 'stripe';
 
 export default async function handler(req, res) {
+  // Set CORS headers to allow requests from localhost during development
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -93,7 +103,10 @@ export default async function handler(req, res) {
       cancel_url: `${process.env.CANCEL_URL || 'https://clipson.io'}/close-sale`,
     });
 
-    return res.status(200).json({ id: session.id });
+    return res.status(200).json({ 
+      id: session.id,
+      url: session.url // Return the checkout URL for direct redirect
+    });
   } catch (error) {
     console.error('Error:', error);
     // Return detailed error for debugging
