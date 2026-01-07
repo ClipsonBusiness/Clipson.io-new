@@ -168,7 +168,7 @@ const CloseSale = () => {
                   <svg className="w-4 h-4 inline-block mr-1 align-middle" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                   </svg>
-                  Monthly subscription - You'll be charged monthly until you cancel
+                  One-time payment per campaign
                 </p>
               </div>
 
@@ -278,14 +278,14 @@ const CloseSale = () => {
                   <div>
                     <p className="text-white font-medium">Complete Access</p>
                     <p className="text-gray-400 text-sm mt-1">Launch your clipping campaign</p>
-                    <p className="text-gray-500 text-xs mt-1">Monthly subscription</p>
+                    <p className="text-gray-500 text-xs mt-1">One-time payment per campaign</p>
                     {clipperSpending && (
-                      <p className="text-gray-500 text-xs mt-1">Based on ${parseFloat(clipperSpending).toLocaleString()}/month clipper spending</p>
+                      <p className="text-gray-500 text-xs mt-1">Based on ${parseFloat(clipperSpending).toLocaleString()} clipper spending</p>
                     )}
                   </div>
                   <div className="text-right">
                     <p className="text-white font-semibold">${campaignPrice.toFixed(2)}</p>
-                    <p className="text-gray-400 text-xs">/month</p>
+                    <p className="text-gray-400 text-xs">per campaign</p>
                   </div>
                 </div>
                 
@@ -397,11 +397,11 @@ const CloseSale = () => {
                 <div className="flex justify-between items-center">
                   <div>
                     <span className="text-lg font-semibold text-white">Total</span>
-                    <p className="text-gray-400 text-xs">per month</p>
+                    <p className="text-gray-400 text-xs">per campaign</p>
                   </div>
                   <div className="text-right">
                     <span className="text-2xl font-bold text-green-400">${total.toFixed(2)}</span>
-                    <p className="text-gray-400 text-xs">/month</p>
+                    <p className="text-gray-400 text-xs">one-time</p>
                   </div>
                 </div>
               </div>
