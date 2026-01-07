@@ -56,13 +56,13 @@ export default async function handler(req, res) {
     ];
 
     // Add Discord announcement if selected (only charge if not included for free)
-    // Discord is free/included for spending >= $5K
+    // Discord is free/included for spending < $2K OR >= $5K
     if (discordAnnouncement) {
       const spendingAmount = parseFloat(spending) || 0;
-      const shouldBeFree = spendingAmount >= 5000;
+      const shouldBeFree = spendingAmount < 2000 || spendingAmount >= 5000;
       
       if (!shouldBeFree) {
-        // Charge for Discord add-on (spending < $5K)
+        // Charge for Discord add-on (spending $2K-$5K only)
         lineItems.push({
           price_data: {
             currency: 'usd',
