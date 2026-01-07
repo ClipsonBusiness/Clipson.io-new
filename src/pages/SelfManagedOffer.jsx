@@ -11,13 +11,13 @@ const SelfManagedOffer = () => {
     const amount = parseFloat(spending) || 0
     
     if (amount < 2000) {
-      return 197
-    } else if (amount >= 2000 && amount < 5000) {
       return 247
-    } else if (amount >= 5000 && amount <= 10000) {
+    } else if (amount >= 2000 && amount < 5000) {
       return 297
+    } else if (amount >= 5000 && amount <= 10000) {
+      return 347
     } else {
-      return 349
+      return 399
     }
   }
 
@@ -108,7 +108,7 @@ const SelfManagedOffer = () => {
                       <p className="text-gray-400 text-xs mb-1">{priceTier.tier} Plan</p>
                       <p className="text-3xl font-bold text-green-400 mb-1">${calculatedPrice}</p>
                       <p className="text-gray-400 text-xs">{priceTier.description}</p>
-                      {parseFloat(clipperSpending) >= 5000 && (
+                      {(parseFloat(clipperSpending) < 2000 || parseFloat(clipperSpending) >= 5000) && (
                         <div className="mt-2 pt-2 border-t border-green-400/20">
                           <p className="text-green-400 text-xs font-medium">
                             ✓ Discord Announcement Included
@@ -123,19 +123,19 @@ const SelfManagedOffer = () => {
                 <div className="mt-4 space-y-1.5 text-xs text-gray-400">
                   <div className="flex justify-between items-center">
                     <span>Spending below $2K</span>
-                    <span className="text-white font-medium">$197</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Spending $2K-$5K</span>
                     <span className="text-white font-medium">$247</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>Spending $5K-$10K</span>
+                    <span>Spending $2K-$5K</span>
                     <span className="text-white font-medium">$297</span>
                   </div>
                   <div className="flex justify-between items-center">
+                    <span>Spending $5K-$10K</span>
+                    <span className="text-white font-medium">$347</span>
+                  </div>
+                  <div className="flex justify-between items-center">
                     <span>Spending over $10K</span>
-                    <span className="text-white font-medium">$349</span>
+                    <span className="text-white font-medium">$399</span>
                   </div>
                 </div>
 
