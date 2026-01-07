@@ -37,19 +37,16 @@ export default async function handler(req, res) {
   try {
     const { name, email, amount, baseAmount, spending, discordAnnouncement } = req.body;
 
-    // Build line items for subscription (recurring monthly)
+    // Build line items for one-time payment (per campaign)
     const lineItems = [
       {
         price_data: {
           currency: 'usd',
           product_data: {
             name: 'Complete Access',
-            description: 'Launch your clipping campaign - Monthly subscription',
+            description: 'Launch your clipping campaign - One-time payment per campaign',
           },
           unit_amount: Math.round(baseAmount || amount), // Amount in cents
-          recurring: {
-            interval: 'month', // Monthly subscription
-          },
         },
         quantity: 1,
       },
@@ -71,9 +68,6 @@ export default async function handler(req, res) {
               description: 'Announcement inside ClipSon\'s Discord - Brings campaigns a lot of clippers',
             },
             unit_amount: 3995, // $39.95 in cents (15% off from $47)
-            recurring: {
-              interval: 'month', // Monthly subscription
-            },
           },
           quantity: 1,
         });
@@ -81,23 +75,17 @@ export default async function handler(req, res) {
       // If shouldBeFree is true, Discord is included - don't add as line item (it's free)
     }
 
-    // Create Subscription Checkout Session
+    // Create Payment Checkout Session (one-time payment)
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: lineItems,
-      mode: 'subscription', // Monthly subscription
+      mode: 'payment', // One-time payment per campaign
       customer_email: email,
       metadata: {
         customer_name: name,
         discord_announcement: discordAnnouncement ? 'true' : 'false',
-        monthly_amount: amount.toString(),
+        amount: amount.toString(),
         spending: spending || '0',
-      },
-      subscription_data: {
-        metadata: {
-          customer_name: name,
-          discord_announcement: discordAnnouncement ? 'true' : 'false',
-        },
       },
       success_url: `${process.env.SUCCESS_URL || 'https://clipson.io'}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CANCEL_URL || 'https://clipson.io'}/close-sale`,
