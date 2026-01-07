@@ -17,19 +17,19 @@ const CloseSale = () => {
   const clipperSpending = searchParams.get('spending') || ''
   const spendingAmount = parseFloat(clipperSpending) || 0
   
-  // Discord is free/included for spending $5K or more
-  const discordIncluded = spendingAmount >= 5000
+  // Discord is free/included for spending < $2K OR >= $5K
+  const discordIncluded = spendingAmount < 2000 || spendingAmount >= 5000
   const discordAddOnOriginalPrice = 47
   const discordDiscount = 0.15 // 15% off
   const discordAddOnPrice = discordAddOnOriginalPrice * (1 - discordDiscount) // $39.95
   const discordSavings = discordAddOnOriginalPrice - discordAddOnPrice // $7.05
   const tax = 0 // Adjust if needed
   
-  // If Discord is included (spending >= $5K), automatically include it and don't charge
+  // If Discord is included (spending < $2K OR >= $5K), automatically include it and don't charge
   const discordPrice = (discordIncluded || formData.discordAnnouncement) && !discordIncluded ? discordAddOnPrice : 0
   const total = campaignPrice + discordPrice + tax
   
-  // Auto-check Discord if spending >= $5K
+  // Auto-check Discord if spending < $2K OR >= $5K
   useEffect(() => {
     if (discordIncluded && !formData.discordAnnouncement) {
       setFormData(prev => ({ ...prev, discordAnnouncement: true }))
@@ -292,7 +292,7 @@ const CloseSale = () => {
                 {/* Discord Announcement Add-on */}
                 <div className="border-t border-gray-700/50 pt-4">
                   {discordIncluded ? (
-                    // Included for free (spending >= $5K)
+                    // Included for free (spending < $2K OR >= $5K)
                     <div className="flex items-start gap-3">
                       <div className="mt-1 w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
@@ -321,7 +321,7 @@ const CloseSale = () => {
                       </div>
                     </div>
                   ) : (
-                    // Available as add-on (spending < $5K)
+                    // Available as add-on (spending $2K-$5K only)
                     <label className="flex items-start gap-3 cursor-pointer group">
                       <input
                         type="checkbox"
